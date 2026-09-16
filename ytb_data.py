@@ -1,5 +1,6 @@
 from googleapiclient.discovery import build
 import json
+from datetime import datetime
 
 
 api_key = "AIzaSyCbRCbf6TSQzZWhUXSMtMxjEt_9RwEmRJA"
@@ -55,7 +56,10 @@ for i in range(0, len(video_ids), 50):
 
 
      
-with open("ytDATA.json", 'w', encoding='utf-8') as f:
+date_str = datetime.now().strftime('%Y-%m-%d')
+output_path = f'data/YTdata{date_str}.json'
+
+with open(output_path, 'w', encoding='utf-8') as f:
     json.dump(all_video_data, f, indent=2, ensure_ascii=False)
 
-print(f"Données sauvegardées dans ytDATA.json")
+print(f"Données sauvegardées dans {output_path}")
