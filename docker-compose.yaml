@@ -1,4 +1,3 @@
-
 ---
 x-airflow-common:
   &airflow-common
@@ -40,6 +39,8 @@ x-airflow-common:
     ELT_DATABASE_PASSWORD: ${ELT_DATABASE_PASSWORD}
     POSTGRES_CONN_HOST: ${POSTGRES_CONN_HOST}
     POSTGRES_CONN_PORT: ${POSTGRES_CONN_PORT}
+    # Lets Python resolve top-level packages that live outside dags/ (e.g. scripts/)
+    PYTHONPATH: /opt/airflow
   volumes:
     - ./config:/opt/airflow/config
     - ./dags:/opt/airflow/dags
@@ -48,6 +49,7 @@ x-airflow-common:
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - ./tests:/opt/airflow/tests
+    - ./scripts:/opt/airflow/scripts
   user: "${AIRFLOW_UID}:0"
   depends_on:
     &airflow-common-depends-on

@@ -1,0 +1,30 @@
+[2026-09-17T15:40:25.514+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-17T15:40:25.552+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: youtube_extraction.get_videos_data manual__2026-09-17T15:40:12.652629+00:00 [queued]>
+[2026-09-17T15:40:25.567+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: youtube_extraction.get_videos_data manual__2026-09-17T15:40:12.652629+00:00 [queued]>
+[2026-09-17T15:40:25.568+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-09-17T15:40:25.594+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): get_videos_data> on 2026-09-17 15:40:12.652629+00:00
+[2026-09-17T15:40:25.607+0000] {standard_task_runner.py:63} INFO - Started process 2044 to run task
+[2026-09-17T15:40:25.616+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'youtube_extraction', 'get_videos_data', 'manual__2026-09-17T15:40:12.652629+00:00', '--job-id', '99', '--raw', '--subdir', 'DAGS_FOLDER/dag_extraction.py', '--cfg-path', '/tmp/tmpa6n99niq']
+[2026-09-17T15:40:25.621+0000] {standard_task_runner.py:91} INFO - Job 99: Subtask get_videos_data
+[2026-09-17T15:40:25.691+0000] {task_command.py:426} INFO - Running <TaskInstance: youtube_extraction.get_videos_data manual__2026-09-17T15:40:12.652629+00:00 [running]> on host 7819533a1447
+[2026-09-17T15:40:25.807+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='youtube_extraction' AIRFLOW_CTX_TASK_ID='get_videos_data' AIRFLOW_CTX_EXECUTION_DATE='2026-09-17T15:40:12.652629+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-17T15:40:12.652629+00:00'
+[2026-09-17T15:40:25.811+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-17T15:40:25.834+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-17T15:40:25.835+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+TypeError: get_videos() missing 2 required positional arguments: 'youtube' and 'uploads_playlist_id'
+[2026-09-17T15:40:25.848+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=youtube_extraction, task_id=get_videos_data, run_id=manual__2026-09-17T15:40:12.652629+00:00, execution_date=20260917T154012, start_date=20260917T154025, end_date=20260917T154025
+[2026-09-17T15:40:25.873+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 99 for task get_videos_data (get_videos() missing 2 required positional arguments: 'youtube' and 'uploads_playlist_id'; 2044)
+[2026-09-17T15:40:25.912+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-17T15:40:25.938+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-17T15:40:25.941+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
