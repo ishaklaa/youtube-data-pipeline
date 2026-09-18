@@ -14,10 +14,10 @@ conn = psycopg2.connect(
 cur = conn.cursor()
 
 cur.execute("""
-   
-
+    drop table staging;
+    drop table core;
     CREATE TABLE IF NOT EXISTS staging (
-        video_id TEXT,
+        video_id VARCHAR PRIMARY KEY,  
         title TEXT,
         published_at TEXT,
         duration TEXT,
@@ -25,6 +25,17 @@ cur.execute("""
         like_count TEXT,
         comment_count TEXT,
         loaded_at TIMESTAMP DEFAULT NOW()
+    );
+    
+    CREATE TABLE IF NOT EXISTS core (
+        video_id VARCHAR PRIMARY KEY,  
+        title TEXT,
+        published_at TIMESTAMP,
+        duration INTEGER,
+        view_count BIGINT,
+        like_count BIGINT,
+        comment_count BIGINT,
+        loaded_at TIMESTAMP
     );
 """)
 

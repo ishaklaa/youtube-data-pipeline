@@ -1,0 +1,21 @@
+[2026-09-18T10:07:58.206+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-18T10:07:58.226+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: youtube_data_updating.load_staging manual__2026-09-18T10:07:56.388877+00:00 [queued]>
+[2026-09-18T10:07:58.233+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: youtube_data_updating.load_staging manual__2026-09-18T10:07:56.388877+00:00 [queued]>
+[2026-09-18T10:07:58.235+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-09-18T10:07:58.248+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_staging> on 2026-09-18 10:07:56.388877+00:00
+[2026-09-18T10:07:58.259+0000] {standard_task_runner.py:63} INFO - Started process 73 to run task
+[2026-09-18T10:07:58.262+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'youtube_data_updating', 'load_staging', 'manual__2026-09-18T10:07:56.388877+00:00', '--job-id', '215', '--raw', '--subdir', 'DAGS_FOLDER/dag_updating.py', '--cfg-path', '/tmp/tmprn06jhpj']
+[2026-09-18T10:07:58.265+0000] {standard_task_runner.py:91} INFO - Job 215: Subtask load_staging
+[2026-09-18T10:07:58.323+0000] {task_command.py:426} INFO - Running <TaskInstance: youtube_data_updating.load_staging manual__2026-09-18T10:07:56.388877+00:00 [running]> on host 428da72329dd
+[2026-09-18T10:07:58.397+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='youtube_data_updating' AIRFLOW_CTX_TASK_ID='load_staging' AIRFLOW_CTX_EXECUTION_DATE='2026-09-18T10:07:56.388877+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-18T10:07:56.388877+00:00'
+[2026-09-18T10:07:58.399+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-18T10:07:58.438+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2026-09-18T10:07:58.444+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2026-09-18T10:07:58.516+0000] {sql.py:598} INFO - Loaded 444 rows into staging so far
+[2026-09-18T10:07:58.517+0000] {sql.py:611} INFO - Done loading. Loaded a total of 444 rows into staging
+[2026-09-18T10:07:58.518+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-09-18T10:07:58.520+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-18T10:07:58.528+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=youtube_data_updating, task_id=load_staging, run_id=manual__2026-09-18T10:07:56.388877+00:00, execution_date=20260918T100756, start_date=20260918T100758, end_date=20260918T100758
+[2026-09-18T10:07:58.558+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-09-18T10:07:58.582+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-09-18T10:07:58.585+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

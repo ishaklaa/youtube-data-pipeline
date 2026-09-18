@@ -17,7 +17,7 @@ def staging():
 
     with open(latest_file, 'r', encoding='utf-8') as f:
         videos = json.load(f)
-    print(len(videos))
+    
 
     hook = PostgresHook(postgres_conn_id='postgres_db_yt_elt')
     hook.insert_rows(

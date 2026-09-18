@@ -1,0 +1,65 @@
+[2026-09-18T09:53:52.546+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-18T09:53:52.563+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: youtube_data_updating.transforming manual__2026-09-18T09:48:47.606106+00:00 [queued]>
+[2026-09-18T09:53:52.571+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: youtube_data_updating.transforming manual__2026-09-18T09:48:47.606106+00:00 [queued]>
+[2026-09-18T09:53:52.572+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-09-18T09:53:52.583+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): transforming> on 2026-09-18 09:48:47.606106+00:00
+[2026-09-18T09:53:52.590+0000] {standard_task_runner.py:63} INFO - Started process 153 to run task
+[2026-09-18T09:53:52.593+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'youtube_data_updating', 'transforming', 'manual__2026-09-18T09:48:47.606106+00:00', '--job-id', '213', '--raw', '--subdir', 'DAGS_FOLDER/dag_updating.py', '--cfg-path', '/tmp/tmpqblmx7tu']
+[2026-09-18T09:53:52.597+0000] {standard_task_runner.py:91} INFO - Job 213: Subtask transforming
+[2026-09-18T09:53:52.648+0000] {task_command.py:426} INFO - Running <TaskInstance: youtube_data_updating.transforming manual__2026-09-18T09:48:47.606106+00:00 [running]> on host 69f864819403
+[2026-09-18T09:53:52.721+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='youtube_data_updating' AIRFLOW_CTX_TASK_ID='transforming' AIRFLOW_CTX_EXECUTION_DATE='2026-09-18T09:48:47.606106+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-18T09:48:47.606106+00:00'
+[2026-09-18T09:53:52.723+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-18T09:53:52.741+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2026-09-18T09:53:52.768+0000] {xcom.py:675} ERROR - Object of type Timestamp is not JSON serializable. If you are using pickle instead of JSON for XCom, then you need to enable pickle support for XCom in your *** config or make sure to decorate your object with attr.
+[2026-09-18T09:53:52.770+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-18T09:53:52.771+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/json.py", line 91, in default
+    return serialize(o)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/serialization/serde.py", line 189, in serialize
+    raise TypeError(f"cannot serialize object of type {cls}")
+TypeError: cannot serialize object of type <class 'pandas._libs.tslibs.timestamps.Timestamp'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/scripts/data_transform.py", line 51, in transform_staging
+    kwargs["ti"].xcom_push(key='transformed_data', value=records)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3197, in xcom_push
+    XCom.set(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/xcom.py", line 246, in set
+    value = cls.serialize_value(
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/xcom.py", line 673, in serialize_value
+    return json.dumps(value, cls=XComEncoder).encode("UTF-8")
+  File "/usr/local/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/json.py", line 104, in encode
+    return super().encode(o)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/json.py", line 93, in default
+    return super().default(o)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Timestamp is not JSON serializable
+[2026-09-18T09:53:52.785+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=youtube_data_updating, task_id=transforming, run_id=manual__2026-09-18T09:48:47.606106+00:00, execution_date=20260918T094847, start_date=20260918T095352, end_date=20260918T095352
+[2026-09-18T09:53:52.798+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 213 for task transforming (Object of type Timestamp is not JSON serializable; 153)
+[2026-09-18T09:53:52.808+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-18T09:53:52.827+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-18T09:53:52.833+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

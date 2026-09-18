@@ -1,0 +1,18 @@
+[2026-09-18T07:58:50.404+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-18T07:58:50.425+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: youtube_extraction.get_videos_details manual__2026-09-18T07:58:42.437895+00:00 [queued]>
+[2026-09-18T07:58:50.434+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: youtube_extraction.get_videos_details manual__2026-09-18T07:58:42.437895+00:00 [queued]>
+[2026-09-18T07:58:50.435+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-09-18T07:58:50.449+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): get_videos_details> on 2026-09-18 07:58:42.437895+00:00
+[2026-09-18T07:58:50.454+0000] {standard_task_runner.py:63} INFO - Started process 84 to run task
+[2026-09-18T07:58:50.459+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'youtube_extraction', 'get_videos_details', 'manual__2026-09-18T07:58:42.437895+00:00', '--job-id', '190', '--raw', '--subdir', 'DAGS_FOLDER/dag_extraction.py', '--cfg-path', '/tmp/tmp1d7cx2uo']
+[2026-09-18T07:58:50.462+0000] {standard_task_runner.py:91} INFO - Job 190: Subtask get_videos_details
+[2026-09-18T07:58:50.516+0000] {task_command.py:426} INFO - Running <TaskInstance: youtube_extraction.get_videos_details manual__2026-09-18T07:58:42.437895+00:00 [running]> on host 7ff24c91f847
+[2026-09-18T07:58:50.600+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='youtube_extraction' AIRFLOW_CTX_TASK_ID='get_videos_details' AIRFLOW_CTX_EXECUTION_DATE='2026-09-18T07:58:42.437895+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-18T07:58:42.437895+00:00'
+[2026-09-18T07:58:50.602+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-18T07:58:50.621+0000] {__init__.py:49} INFO - file_cache is only supported with oauth2client<4.0.0
+[2026-09-18T07:58:54.207+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-09-18T07:58:54.207+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-18T07:58:54.217+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=youtube_extraction, task_id=get_videos_details, run_id=manual__2026-09-18T07:58:42.437895+00:00, execution_date=20260918T075842, start_date=20260918T075850, end_date=20260918T075854
+[2026-09-18T07:58:54.263+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-09-18T07:58:54.299+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-09-18T07:58:54.302+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
